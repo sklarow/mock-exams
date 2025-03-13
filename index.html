@@ -6,6 +6,8 @@
     <title>Mock Exam System</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -20,6 +22,42 @@
                     <select id="exam-select" class="form-select">
                         <!-- Options will be populated dynamically -->
                     </select>
+                </div>
+
+                <div id="exam-info" class="card mb-3" style="display: none;">
+                    <div class="card-body">
+                        <h4 id="exam-info-title" class="card-title"></h4>
+                        <p id="exam-info-description" class="card-text"></p>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-award-fill text-success me-2" style="font-size: 1.5rem;"></i>
+                                    <div>
+                                        <h6 class="mb-0">Passing Score</h6>
+                                        <p id="exam-info-passing-score" class="mb-0 fw-bold"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-clock-fill text-primary me-2" style="font-size: 1.5rem;"></i>
+                                    <div>
+                                        <h6 class="mb-0">Time Limit</h6>
+                                        <p id="exam-info-time-limit" class="mb-0 fw-bold"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-question-circle-fill text-info me-2" style="font-size: 1.5rem;"></i>
+                                    <div>
+                                        <h6 class="mb-0">Number of Questions</h6>
+                                        <p id="exam-info-num-questions" class="mb-0 fw-bold"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="legal-disclaimer" class="alert alert-secondary mt-3 mb-3 small" style="display: none;">
                     <!-- Legal disclaimer will be populated dynamically -->

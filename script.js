@@ -33,33 +33,54 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadExamList() {
-        fetch('exams/')
-            .then(response => {
-                const examFiles = ['ctfl.json'];
-                
-                // Clear existing options
-                examSelect.innerHTML = '';
-                
-                // Add options for each exam file
-                examFiles.forEach(file => {
+        // Define exam files here - add new JSON files to this array
+        const examFiles = ['ctfl.json', 'ctfl-at.json'];
+        
+        // Clear existing options
+        examSelect.innerHTML = '';
+        
+        // Track loaded exams for setting initial selection
+        let loadedExams = 0;
+        const totalExams = examFiles.length;
+        
+        // Add options for each exam file
+        examFiles.forEach(file => {
+            // Fetch the exam file to get its title
+            fetch(`exams/${file}`)
+                .then(response => response.json())
+                .then(examData => {
                     const option = document.createElement('option');
                     option.value = file;
-                    option.textContent = file.replace('.json', '').toUpperCase();
+                    // Use the title from the JSON file instead of the filename
+                    option.textContent = examData.title;
                     examSelect.appendChild(option);
+                    
+                    loadedExams++;
+                    
+                    // When all exams are loaded, set up the first exam's disclaimer
+                    if (loadedExams === 1) {
+                        // Load the first exam's disclaimer
+                        loadExamDisclaimer(file);
+                    }
+                })
+                .catch(error => {
+                    console.error(`Error loading exam ${file}:`, error);
+                    // Still create an option but use the filename as fallback
+                    const option = document.createElement('option');
+                    option.value = file;
+                    option.textContent = file.replace('.json', '').toUpperCase() + ' (Error loading title)';
+                    examSelect.appendChild(option);
+                    
+                    loadedExams++;
+                    
+                    // When all exams are loaded, set up the first exam's disclaimer
+                    if (loadedExams === 1) {
+                        // Load the first exam's disclaimer
+                        loadExamDisclaimer(file);
+                    }
                 });
-                
-                // Load the first exam's disclaimer
-                if (examFiles.length > 0) {
-                    loadExamDisclaimer(examFiles[0]);
-                }
-            })
-            .catch(error => {
-                console.error('Error loading exam list:', error);
-                // Fallback to hardcoded option
-                examSelect.innerHTML = '<option value="ctfl.json">CTFL</option>';
-                loadExamDisclaimer('ctfl.json');
-            });
-            
+        });
+        
         // Add event listener for exam selection change
         examSelect.addEventListener('change', function() {
             loadExamDisclaimer(this.value);
@@ -68,20 +89,36 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function loadExamDisclaimer(examFile) {
         const disclaimerElement = document.getElementById('legal-disclaimer');
+        const examInfoElement = document.getElementById('exam-info');
+        const examInfoTitle = document.getElementById('exam-info-title');
+        const examInfoDescription = document.getElementById('exam-info-description');
+        const examInfoPassingScore = document.getElementById('exam-info-passing-score');
+        const examInfoTimeLimit = document.getElementById('exam-info-time-limit');
+        const examInfoNumQuestions = document.getElementById('exam-info-num-questions');
         
         fetch(`exams/${examFile}`)
             .then(response => response.json())
             .then(examData => {
+                // Display legal disclaimer
                 if (examData.legalDisclaimer) {
                     disclaimerElement.textContent = examData.legalDisclaimer;
                     disclaimerElement.style.display = 'block';
                 } else {
                     disclaimerElement.style.display = 'none';
                 }
+                
+                // Display exam information
+                examInfoTitle.textContent = examData.title;
+                examInfoDescription.textContent = examData.description;
+                examInfoPassingScore.textContent = `${examData.passingScore * 100}%`;
+                examInfoTimeLimit.textContent = `${examData.timeLimit} minutes`;
+                examInfoNumQuestions.textContent = examData.numberOfQuestions;
+                examInfoElement.style.display = 'block';
             })
             .catch(error => {
-                console.error('Error loading exam disclaimer:', error);
+                console.error('Error loading exam data:', error);
                 disclaimerElement.style.display = 'none';
+                examInfoElement.style.display = 'none';
             });
     }
 
@@ -265,6 +302,9 @@ document.addEventListener('DOMContentLoaded', function() {
             clearInterval(timerInterval);
         }
         
+        // Scroll to top of the page
+        window.scrollTo(0, 0);
+        
         // Calculate score
         const score = calculateScore();
         
@@ -373,10 +413,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 correctAnswerDiv.innerHTML = `<strong>Correct Answer:</strong> ${question.correctAnswer}`;
             }
             
+            // Answer explanation
+            const explanationDiv = document.createElement('div');
+            explanationDiv.className = 'answer-explanation p-2 mt-2 rounded';
+            explanationDiv.innerHTML = `<i class="bi bi-lightbulb-fill me-2"></i><strong>Explanation:</strong> ${question.AnswerExplanation}`;
+            
             // Append elements
             cardBody.appendChild(questionText);
             cardBody.appendChild(userAnswerDiv);
             if (correctAnswerDiv) cardBody.appendChild(correctAnswerDiv);
+            cardBody.appendChild(explanationDiv);
             
             resultCard.appendChild(cardHeader);
             resultCard.appendChild(cardBody);
