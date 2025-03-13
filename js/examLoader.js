@@ -57,7 +57,8 @@ function loadExamDisclaimer(examFile, elements) {
         examInfoDescription, 
         examInfoPassingScore, 
         examInfoTimeLimit, 
-        examInfoNumQuestions 
+        examInfoNumQuestions,
+        examInfoTotalQuestions 
     } = elements;
     
     fetch(`exams/${examFile}`)
@@ -77,6 +78,11 @@ function loadExamDisclaimer(examFile, elements) {
             examInfoPassingScore.textContent = `${examData.passingScore * 100}%`;
             examInfoTimeLimit.textContent = `${examData.timeLimit} minutes`;
             examInfoNumQuestions.textContent = examData.numberOfQuestions;
+            
+            // Count and display total available questions in the pool
+            const totalAvailableQuestions = examData.questions ? examData.questions.length : 0;
+            examInfoTotalQuestions.textContent = totalAvailableQuestions;
+            
             examInfoElement.style.display = 'block';
         })
         .catch(error => {

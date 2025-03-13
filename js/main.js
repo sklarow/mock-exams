@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const examInfoPassingScore = document.getElementById('exam-info-passing-score');
     const examInfoTimeLimit = document.getElementById('exam-info-time-limit');
     const examInfoNumQuestions = document.getElementById('exam-info-num-questions');
+    const examInfoTotalQuestions = document.getElementById('exam-info-total-questions');
 
     // Group elements for easier passing to functions
     const examInfoElements = {
@@ -37,7 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
         examInfoDescription,
         examInfoPassingScore,
         examInfoTimeLimit,
-        examInfoNumQuestions
+        examInfoNumQuestions,
+        examInfoTotalQuestions
     };
 
     const examDisplayElements = {

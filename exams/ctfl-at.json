@@ -1,6 +1,6 @@
 {
     "title": "CTFL-AT Mock Exam",
-    "description": "This exam simulates the Certified Tester Foundation Level (CTFL) certification exam, covering key software testing principles and practices.",
+    "description": "This exam simulates the Certified Tester Foundation Level - Agile Tester (CTFL-AT) certification exam, covering key software testing principles and practices.",
     "numberOfQuestions": 5,
     "legalDisclaimer": "DISCLAIMER FOR CTFL-AT This mock exam system is intended for educational and non-commercial purposes only. The exam questions used in this system are derived from ISTQB® sample exams, and all rights remain with the International Software Testing Qualifications Board (ISTQB®). This system is not affiliated with, endorsed by, or officially associated with ISTQB®. The content is provided to assist individuals in their preparation for ISTQB® certification exams. For official ISTQB® materials and exams, please visit www.istqb.org",
     "passingScore": 0.7,
@@ -125,6 +125,17 @@
               "Black-box testing.",
               "White-box testing.",
               "Performance testing."
+            ]
+          },
+          {
+            "questionType": "plain",
+            "questionContent": "AT What is the main purpose of a test summary report?",
+            "correctAnswer": "R To provide a comprehensive overview of the testing activities and results.",
+            "AnswerExplanation": "This is an explanation why this is the correct answer.",
+            "wrongOptions": [
+              "To list every defect found during testing.",
+              "To document each individual test case in detail.",
+              "To provide a detailed project plan for future releases."
             ]
           }
     ]
