@@ -16,8 +16,33 @@ function displayResults(score, elements, selectedQuestions, userAnswers) {
     }
     
     // Display pass/fail message
-    passFail.textContent = score.isPassing ? 'PASSED' : 'FAILED';
-    passFail.className = score.isPassing ? 'pass p-2 rounded' : 'fail p-2 rounded';
+    passFail.innerHTML = '';
+    passFail.className = 'result-card';
+    
+    // Create a more visually appealing pass/fail card
+    const resultIcon = document.createElement('div');
+    resultIcon.className = 'result-icon';
+    resultIcon.innerHTML = score.isPassing ? 
+        '<i class="bi bi-trophy-fill"></i>' : 
+        '<i class="bi bi-x-octagon-fill"></i>';
+    
+    const resultStatus = document.createElement('div');
+    resultStatus.className = 'result-status';
+    resultStatus.textContent = score.isPassing ? 'PASSED' : 'FAILED';
+    
+    const resultMessage = document.createElement('div');
+    resultMessage.className = 'result-message';
+    resultMessage.textContent = score.isPassing ? 
+        'Congratulations! You have successfully passed the exam.' : 
+        'Don\'t give up! Review the questions below and try again.';
+    
+    // Apply appropriate styling class
+    passFail.classList.add(score.isPassing ? 'pass-card' : 'fail-card');
+    
+    // Append elements to the pass/fail container
+    passFail.appendChild(resultIcon);
+    passFail.appendChild(resultStatus);
+    passFail.appendChild(resultMessage);
     
     // Trigger confetti if user passed
     if (score.isPassing) {
