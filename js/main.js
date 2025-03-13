@@ -50,7 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const resultElements = {
         scoreDisplay,
         passFail,
-        resultsBreakdown
+        resultsBreakdown,
+        rawScore: document.getElementById('raw-score'),
+        totalQuestions: document.getElementById('total-questions')
     };
 
     // Variables

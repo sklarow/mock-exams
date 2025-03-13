@@ -4,10 +4,16 @@ import confetti from './confetti.js';
 
 // Function to display exam results
 function displayResults(score, elements, selectedQuestions, userAnswers) {
-    const { scoreDisplay, passFail, resultsBreakdown } = elements;
+    const { scoreDisplay, passFail, resultsBreakdown, rawScore, totalQuestions } = elements;
     
     // Display score
     scoreDisplay.textContent = score.percentage;
+    
+    // Display raw score
+    if (rawScore && totalQuestions) {
+        rawScore.textContent = score.correctAnswers;
+        totalQuestions.textContent = score.totalQuestions;
+    }
     
     // Display pass/fail message
     passFail.textContent = score.isPassing ? 'PASSED' : 'FAILED';
