@@ -110,7 +110,15 @@ document.addEventListener('DOMContentLoaded', function() {
             // Create question header
             const questionHeader = document.createElement('h5');
             questionHeader.className = 'card-title';
-            questionHeader.textContent = `Question ${questionNumber}: ${question.question}`;
+            
+            // Handle question content based on type
+            if (question.questionType === 'html') {
+                // For HTML questions, use innerHTML to render HTML content
+                questionHeader.innerHTML = `Question ${questionNumber}: ${question.questionContent}`;
+            } else {
+                // For plain text questions, use textContent
+                questionHeader.textContent = `Question ${questionNumber}: ${question.questionContent}`;
+            }
             
             // Create options container
             const optionsContainer = document.createElement('div');
@@ -148,7 +156,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 const label = document.createElement('label');
                 label.className = 'option-label';
                 label.htmlFor = optionId;
-                label.textContent = option;
+                
+                // Handle option content based on if it contains HTML
+                if (option.includes('<') && option.includes('>')) {
+                    // If option contains HTML tags, use innerHTML
+                    label.innerHTML = option;
+                } else {
+                    // Otherwise use textContent for plain text
+                    label.textContent = option;
+                }
                 
                 // Append elements
                 optionDiv.appendChild(input);
@@ -306,7 +322,13 @@ document.addEventListener('DOMContentLoaded', function() {
             // Question text
             const questionText = document.createElement('p');
             questionText.className = 'card-text';
-            questionText.textContent = question.question;
+            
+            // Handle question content based on type
+            if (question.questionType === 'html') {
+                questionText.innerHTML = question.questionContent;
+            } else {
+                questionText.textContent = question.questionContent;
+            }
             
             // User's answer
             const userAnswerDiv = document.createElement('div');
