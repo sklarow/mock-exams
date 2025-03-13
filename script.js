@@ -47,11 +47,41 @@ document.addEventListener('DOMContentLoaded', function() {
                     option.textContent = file.replace('.json', '').toUpperCase();
                     examSelect.appendChild(option);
                 });
+                
+                // Load the first exam's disclaimer
+                if (examFiles.length > 0) {
+                    loadExamDisclaimer(examFiles[0]);
+                }
             })
             .catch(error => {
                 console.error('Error loading exam list:', error);
                 // Fallback to hardcoded option
                 examSelect.innerHTML = '<option value="ctfl.json">CTFL</option>';
+                loadExamDisclaimer('ctfl.json');
+            });
+            
+        // Add event listener for exam selection change
+        examSelect.addEventListener('change', function() {
+            loadExamDisclaimer(this.value);
+        });
+    }
+    
+    function loadExamDisclaimer(examFile) {
+        const disclaimerElement = document.getElementById('legal-disclaimer');
+        
+        fetch(`exams/${examFile}`)
+            .then(response => response.json())
+            .then(examData => {
+                if (examData.legalDisclaimer) {
+                    disclaimerElement.textContent = examData.legalDisclaimer;
+                    disclaimerElement.style.display = 'block';
+                } else {
+                    disclaimerElement.style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Error loading exam disclaimer:', error);
+                disclaimerElement.style.display = 'none';
             });
     }
 

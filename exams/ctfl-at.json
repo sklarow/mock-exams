@@ -1,10 +1,10 @@
 {
-    "title": "CTFL Mock Exam",
+    "title": "CTFL-AT Mock Exam",
     "description": "This exam simulates the Certified Tester Foundation Level (CTFL) certification exam, covering key software testing principles and practices.",
-    "numberOfQuestions": 10,
+    "numberOfQuestions": 5,
     "legalDisclaimer": "This mock exam system is intended for educational and non-commercial purposes only. The exam questions used in this system are derived from ISTQB® sample exams, and all rights remain with the International Software Testing Qualifications Board (ISTQB®). This system is not affiliated with, endorsed by, or officially associated with ISTQB®. The content is provided to assist individuals in their preparation for ISTQB® certification exams. For official ISTQB® materials and exams, please visit www.istqb.org",
-    "passingScore": 0.6,
-    "timeLimit": 3,
+    "passingScore": 0.7,
+    "timeLimit": 5,
     "questions": [
         {
             "questionType": "plain",
