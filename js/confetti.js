@@ -1,3 +1,5 @@
+// confetti.js - Handles confetti animation effects for celebration
+
 class Confetti {
     constructor() {
         this.canvas = document.createElement('canvas');
@@ -83,8 +85,6 @@ class Confetti {
     }
 }
 
-// Initialize confetti instance
+// Create and export a singleton instance
 const confetti = new Confetti();
-
-// Export for use in other files
-window.confetti = confetti;
+export default confetti;
