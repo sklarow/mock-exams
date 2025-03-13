@@ -25,8 +25,8 @@ function saveAsPDF(currentExam, elementsToHide) {
                 display: none !important;
             }
             .card-header {
-                background-color: #f8f9fa !important;
-                color: #212529 !important;
+                background: linear-gradient(135deg, #4a6bff 0%, #2541b8 100%) !important;
+                color: white !important;
                 print-color-adjust: exact !important;
                 -webkit-print-color-adjust: exact !important;
             }
