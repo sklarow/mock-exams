@@ -1,0 +1,66 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-header {
+    border-bottom: none;
+}
+
+.question-card {
+    margin-bottom: 20px;
+    border-left: 5px solid #007bff;
+}
+
+.option-label {
+    display: block;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.option-label:hover {
+    background-color: #f1f8ff;
+}
+
+.option-input:checked + .option-label {
+    background-color: #cfe2ff;
+    border-color: #b6d4fe;
+}
+
+.option-input {
+    display: none;
+}
+
+#timer {
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 1.2rem;
+}
+
+.correct-answer {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.wrong-answer {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.pass {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.fail {
+    background-color: #f8d7da;
+    color: #721c24;
+}

@@ -1,0 +1,100 @@
+{
+    "title": "CTFL Mock Exam",
+    "description": "This exam simulates the Certified Tester Foundation Level (CTFL) certification exam, covering key software testing principles and practices.",
+    "numberOfQuestions": 5,
+    "passingScore": 0.6,
+    "timeLimit": 3,
+    "questions": [
+        {
+            "question": "Which testing principle states that testing can only show the presence of defects, not their absence?",
+            "correctAnswer": "R Testing can only show the presence of defects, not their absence.",
+            "wrongOptions": [
+              "Testing proves that the software is error-free.",
+              "Testing eliminates all defects.",
+              "Testing guarantees complete software quality."
+            ]
+          },
+          {
+            "question": "R Which test level is primarily concerned with the evaluation of individual modules or components?",
+            "correctAnswer": "Unit testing.",
+            "wrongOptions": [
+              "Integration testing.",
+              "System testing.",
+              "Acceptance testing."
+            ]
+          },
+          {
+            "question": "What is the primary purpose of integration testing?",
+            "correctAnswer": "R To verify the interaction between integrated components.",
+            "wrongOptions": [
+              "To check the syntax of the code.",
+              "To assess the performance of the complete system.",
+              "To validate individual modules in isolation."
+            ]
+          },
+          {
+            "question": "Which testing technique derives test cases from the system's requirements without knowledge of its internal workings?",
+            "correctAnswer": "R Black-box testing.",
+            "wrongOptions": [
+              "White-box testing.",
+              "Regression testing.",
+              "Performance testing."
+            ]
+          },
+          {
+            "question": "In test management, what is a 'test plan'?",
+            "correctAnswer": "R A document that outlines the strategy, scope, and objectives of testing.",
+            "wrongOptions": [
+              "A checklist of bugs to be fixed.",
+              "A detailed record of test results.",
+              "A list of executed test cases."
+            ]
+          },
+          {
+            "question": "What does 'risk-based testing' imply?",
+            "correctAnswer": "R Prioritizing tests based on the risk of failure and its impact on the project.",
+            "wrongOptions": [
+              "Testing only the high-risk components.",
+              "Randomly selecting test cases without prioritization.",
+              "Testing all components equally regardless of risk."
+            ]
+          },
+          {
+            "question": "Which benefit is most associated with test automation?",
+            "correctAnswer": "R Increased test efficiency and repeatability.",
+            "wrongOptions": [
+              "Complete elimination of manual testing.",
+              "Guaranteed bug-free software.",
+              "Reduced need for test planning and design."
+            ]
+          },
+          {
+            "question": "What is a common challenge encountered in performance testing?",
+            "correctAnswer": "R Simulating realistic user load conditions.",
+            "wrongOptions": [
+              "Eliminating all software defects.",
+              "Achieving 100% code coverage.",
+              "Integrating performance tests with unit tests seamlessly."
+            ]
+          },
+          {
+            "question": "Which of the following is NOT considered a type of non-functional testing?",
+            "correctAnswer": "R Unit testing.",
+            "wrongOptions": [
+              "Performance testing.",
+              "Usability testing.",
+              "Security testing."
+            ]
+          },
+          {
+            "question": "What is the main purpose of a test summary report?",
+            "correctAnswer": "R To provide a comprehensive overview of the testing activities and results.",
+            "wrongOptions": [
+              "To list every defect found during testing.",
+              "To document each individual test case in detail.",
+              "To provide a detailed project plan for future releases."
+            ]
+          }
+    ]
+  }
+  
