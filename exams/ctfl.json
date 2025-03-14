@@ -19,13 +19,25 @@
           },
           {
             "questionType": "plain",
-            "questionContent": "Which test level is primarily concerned with the evaluation of individual modules or components?",
-            "correctAnswer": "R Unit testing.",
+            "questionContent": "Which testing principle states that testing can only show the presence of defects, not their absence?",
+            "correctAnswer": "R Testing can only show the presence of defects, not their absence.",
+            "AnswerExplanation": "This is an explanation why this is the correct answer.",
+            "wrongOptions": [
+              "Testing proves that the software is error-free.",
+              "Testing eliminates all defects.",
+              "Testing guarantees complete software quality."
+            ]
+          },
+          {
+            "questionType": "plain",
+            "questionContent": "Question to test selecting 2 right options",
+            "correctAnswer": [
+              "R Unit testing.",
+              "R Second Right option"],
             "AnswerExplanation": "This is an explanation why this is the correct answer.",
             "wrongOptions": [
               "Integration testing.",
-              "System testing.",
-              "Acceptance testing."
+              "System testing."
             ]
           },
           {

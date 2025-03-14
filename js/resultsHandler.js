@@ -87,28 +87,77 @@ function displayResults(score, elements, selectedQuestions, userAnswers) {
             questionText.textContent = question.questionContent;
         }
         
+        // Add question text to card body
+        cardBody.appendChild(questionText);
+        
+        // Check if question has multiple correct answers
+        const hasMultipleAnswers = Array.isArray(question.correctAnswer);
+        
         // User's answer
         const userAnswerDiv = document.createElement('div');
-        userAnswerDiv.className = userAnswer.selectedOption === question.correctAnswer ? 'correct-answer p-2 mb-2 rounded' : 'wrong-answer p-2 mb-2 rounded';
-        userAnswerDiv.innerHTML = `<strong>Your Answer:</strong> ${userAnswer.selectedOption}`;
         
-        // Correct answer (if user was wrong)
-        let correctAnswerDiv = null;
-        if (userAnswer.selectedOption !== question.correctAnswer) {
-            correctAnswerDiv = document.createElement('div');
-            correctAnswerDiv.className = 'correct-answer p-2 rounded';
-            correctAnswerDiv.innerHTML = `<strong>Correct Answer:</strong> ${question.correctAnswer}`;
+        if (hasMultipleAnswers) {
+            // For multiple answer questions
+            const selectedOptions = userAnswer.selectedOptions || [];
+            const correctOptions = question.correctAnswer;
+            
+            // Check if all correct options are selected and no wrong options are selected
+            const allCorrectSelected = correctOptions.every(option => 
+                selectedOptions.includes(option));
+            const noWrongSelected = selectedOptions.length === correctOptions.length;
+            
+            const isCorrect = allCorrectSelected && noWrongSelected;
+            
+            userAnswerDiv.className = isCorrect ? 'correct-answer p-2 mb-2 rounded' : 'wrong-answer p-2 mb-2 rounded';
+            
+            // Display selected options
+            let userAnswerContent = '<strong>Your Answers:</strong><ul>';
+            if (selectedOptions.length === 0) {
+                userAnswerContent += '<li>Not answered</li>';
+            } else {
+                selectedOptions.forEach(option => {
+                    userAnswerContent += `<li>${option}</li>`;
+                });
+            }
+            userAnswerContent += '</ul>';
+            userAnswerDiv.innerHTML = userAnswerContent;
+            
+            // Correct answer (if user was wrong)
+            if (!isCorrect) {
+                const correctAnswerDiv = document.createElement('div');
+                correctAnswerDiv.className = 'correct-answer p-2 rounded';
+                let correctAnswerContent = '<strong>Correct Answers:</strong><ul>';
+                correctOptions.forEach(option => {
+                    correctAnswerContent += `<li>${option}</li>`;
+                });
+                correctAnswerContent += '</ul>';
+                correctAnswerDiv.innerHTML = correctAnswerContent;
+                cardBody.appendChild(userAnswerDiv);
+                cardBody.appendChild(correctAnswerDiv);
+            } else {
+                cardBody.appendChild(userAnswerDiv);
+            }
+        } else {
+            // For single answer questions
+            userAnswerDiv.className = userAnswer.selectedOption === question.correctAnswer ? 'correct-answer p-2 mb-2 rounded' : 'wrong-answer p-2 mb-2 rounded';
+            userAnswerDiv.innerHTML = `<strong>Your Answer:</strong> ${userAnswer.selectedOption}`;
+            
+            // Correct answer (if user was wrong)
+            if (userAnswer.selectedOption !== question.correctAnswer) {
+                const correctAnswerDiv = document.createElement('div');
+                correctAnswerDiv.className = 'correct-answer p-2 rounded';
+                correctAnswerDiv.innerHTML = `<strong>Correct Answer:</strong> ${question.correctAnswer}`;
+                cardBody.appendChild(userAnswerDiv);
+                cardBody.appendChild(correctAnswerDiv);
+            } else {
+                cardBody.appendChild(userAnswerDiv);
+            }
         }
         
         // Answer explanation
         const explanationDiv = document.createElement('div');
         explanationDiv.className = 'answer-explanation p-2 mt-2 rounded';
         explanationDiv.innerHTML = `<i class="bi bi-lightbulb-fill me-2"></i><strong>Explanation:</strong> ${question.AnswerExplanation}`;
-        
-        // Append elements
-        cardBody.appendChild(questionText);
-        cardBody.appendChild(userAnswerDiv);
-        if (correctAnswerDiv) cardBody.appendChild(correctAnswerDiv);
         cardBody.appendChild(explanationDiv);
         
         resultCard.appendChild(cardHeader);
