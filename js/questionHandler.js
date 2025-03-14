@@ -50,8 +50,8 @@ function displayExam(examData, questions, elements, userAnswers) {
             // For HTML questions, use innerHTML to render HTML content
             questionHeader.innerHTML = `Question ${questionNumber}: ${question.questionContent}`;
         } else {
-            // For plain text questions, use textContent
-            questionHeader.textContent = `Question ${questionNumber}: ${question.questionContent}`;
+            // For plain text questions, use textContent with a line break
+            questionHeader.innerHTML = `Question ${questionNumber}:<br>${question.questionContent}`;
         }
         
         // Create options container
